@@ -1,21 +1,43 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, ShieldCheck, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Phone, Mail, MapPin, ShieldCheck, CheckCircle2, ArrowRight, AlertTriangle, Loader2 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { COMPANY_DETAILS } from '../data/constants';
 
-export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
+const FORM_ENDPOINT = '/api/contact';
 
-  const handleSubmit = (e) => {
+export default function ContactPage() {
+  const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+  const [formValues, setFormValues] = useState({ name: '', phone: '', email: '', message: '' });
+
+  const handleChange = (e) => {
+    setFormValues({ ...formValues, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setStatus('submitting');
+
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(formValues),
+      });
+
+      if (!response.ok) throw new Error(`Server returned ${response.status}`);
+
+      setStatus('success');
+    } catch (err) {
+      console.error('Contact form submission failed:', err);
+      setStatus('error');
+    }
   };
 
   return (
     <div className="pt-32 pb-20 space-y-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SEOHead 
-        title={`Contact Engineering Desk | ${COMPANY_DETAILS.shortName}`} 
-        description={`Contact ${COMPANY_DETAILS.name} at ${COMPANY_DETAILS.address}. Call ${COMPANY_DETAILS.phone} for heating, plumbing, and AC quotes across Basildon and South Essex.`} 
+      <SEOHead
+        title={`Contact Engineering Desk | ${COMPANY_DETAILS.shortName}`}
+        description={`Contact ${COMPANY_DETAILS.name} at ${COMPANY_DETAILS.address}. Call ${COMPANY_DETAILS.phone} for heating, plumbing, and AC quotes across Basildon and South Essex.`}
       />
 
       <div className="max-w-3xl space-y-4">
@@ -29,7 +51,7 @@ export default function ContactPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        
+
         {/* Contact Info Box */}
         <div className="lg:col-span-5 space-y-6">
           <div className="glass-panel rounded-2xl p-6 border border-obsidian-border space-y-5">
@@ -72,7 +94,7 @@ export default function ContactPage() {
         {/* Contact Form */}
         <div className="lg:col-span-7">
           <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-obsidian-border">
-            {submitted ? (
+            {status === 'success' ? (
               <div className="py-10 text-center space-y-3">
                 <div className="w-12 h-12 rounded-full bg-teal/20 border border-teal text-teal flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-6 h-6" />
@@ -83,30 +105,45 @@ export default function ContactPage() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <h3 className="text-lg font-bold text-paper font-mono">Send Us a Message</h3>
-                
+
+                {status === 'error' && (
+                  <div className="p-3 rounded-lg bg-danger/10 border border-danger/40 text-xs text-danger flex items-start gap-2">
+                    <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
+                    <span>Something went wrong sending your message. Please call us directly at {COMPANY_DETAILS.phone} or try again.</span>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label htmlFor="contact-name" className="block text-xs font-semibold text-paper-subtle mb-1">Your Name *</label>
-                    <input id="contact-name" type="text" required placeholder="John Smith" className="w-full bg-obsidian-dark border border-obsidian-border rounded-lg px-3 py-2.5 text-xs text-paper focus:border-copper focus:outline-none" />
+                    <input id="contact-name" name="name" type="text" required placeholder="John Smith" value={formValues.name} onChange={handleChange} className="w-full bg-obsidian-dark border border-obsidian-border rounded-lg px-3 py-2.5 text-xs text-paper focus:border-copper focus:outline-none" />
                   </div>
                   <div>
                     <label htmlFor="contact-phone" className="block text-xs font-semibold text-paper-subtle mb-1">Phone Number *</label>
-                    <input id="contact-phone" type="tel" required placeholder="07123 456789" className="w-full bg-obsidian-dark border border-obsidian-border rounded-lg px-3 py-2.5 text-xs text-paper focus:border-copper focus:outline-none" />
+                    <input id="contact-phone" name="phone" type="tel" required placeholder="07123 456789" value={formValues.phone} onChange={handleChange} className="w-full bg-obsidian-dark border border-obsidian-border rounded-lg px-3 py-2.5 text-xs text-paper focus:border-copper focus:outline-none" />
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="contact-email" className="block text-xs font-semibold text-paper-subtle mb-1">Email Address *</label>
-                  <input id="contact-email" type="email" required placeholder="john@example.co.uk" className="w-full bg-obsidian-dark border border-obsidian-border rounded-lg px-3 py-2.5 text-xs text-paper focus:border-copper focus:outline-none" />
+                  <input id="contact-email" name="email" type="email" required placeholder="john@example.co.uk" value={formValues.email} onChange={handleChange} className="w-full bg-obsidian-dark border border-obsidian-border rounded-lg px-3 py-2.5 text-xs text-paper focus:border-copper focus:outline-none" />
                 </div>
 
                 <div>
                   <label htmlFor="contact-message" className="block text-xs font-semibold text-paper-subtle mb-1">How can we help? *</label>
-                  <textarea id="contact-message" rows="4" required placeholder="Details of your plumbing, heating, or AC requirements..." className="w-full bg-obsidian-dark border border-obsidian-border rounded-lg px-3 py-2.5 text-xs text-paper focus:border-copper focus:outline-none"></textarea>
+                  <textarea id="contact-message" name="message" rows="4" required placeholder="Details of your plumbing, heating, or AC requirements..." value={formValues.message} onChange={handleChange} className="w-full bg-obsidian-dark border border-obsidian-border rounded-lg px-3 py-2.5 text-xs text-paper focus:border-copper focus:outline-none"></textarea>
                 </div>
 
-                <button type="submit" className="w-full btn-primary justify-center text-xs py-3 font-bold">
-                  Send Message <ArrowRight className="w-4 h-4" />
+                <button type="submit" disabled={status === 'submitting'} className="w-full btn-primary justify-center text-xs py-3 font-bold disabled:opacity-60">
+                  {status === 'submitting' ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" /> Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
               </form>
             )}
