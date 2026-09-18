@@ -1,0 +1,6 @@
+import{c as t,j as e,C as r,L as s}from"./index-DpDwcj4f.js";import{S as a}from"./SEOHead-CGejPUXb.js";import{A as o}from"./arrow-right-BCIwaYKv.js";/**
+ * @license lucide-react v0.344.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const x=t("AlertCircle",[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["line",{x1:"12",x2:"12",y1:"8",y2:"12",key:"1pkeuh"}],["line",{x1:"12",x2:"12.01",y1:"16",y2:"16",key:"4dfq90"}]]);function i(){return e.jsxs("div",{className:"pt-32 pb-20 space-y-8 max-w-2xl mx-auto px-4 text-center",children:[e.jsx(a,{title:`404 Page Not Found | ${r.shortName}`,description:"Page not found."}),e.jsx("div",{className:"w-16 h-16 rounded-full bg-copper/20 border border-copper text-copper flex items-center justify-center mx-auto",children:e.jsx(x,{className:"w-8 h-8"})}),e.jsx("h1",{className:"text-4xl font-extrabold text-paper font-mono",children:"404 — Page Not Found"}),e.jsx("p",{className:"text-sm text-paper-muted leading-relaxed",children:"The page or service parameter you requested does not exist or has been moved."}),e.jsx("div",{className:"pt-4",children:e.jsxs(s,{to:"/",className:"btn-primary text-xs py-3 px-6 inline-flex",children:["Return to Homepage ",e.jsx(o,{className:"w-4 h-4"})]})})]})}export{i as default};
