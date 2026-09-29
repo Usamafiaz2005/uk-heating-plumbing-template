@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" fill="none">
+  <!-- Dark Obsidian Website Theme Background -->
+  <rect width="1200" height="630" fill="#0D1117" />
+  
+  <!-- Subtle Blueprint Architectural Grid Overlay -->
+  <defs>
+    <pattern id="gridBanner" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1E2730" stroke-width="1.2" opacity="0.6"/>
+    </pattern>
+    <radialGradient id="bannerCopperGlow" cx="20%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D68A3C" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#0D1117" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="bannerTealGlow" cx="80%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3E7C7A" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#0D1117" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="bCopperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5A855" />
+      <stop offset="50%" stop-color="#D68A3C" />
+      <stop offset="100%" stop-color="#B36A1F" />
+    </linearGradient>
+    <linearGradient id="bTealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5CAAA7" />
+      <stop offset="60%" stop-color="#3E7C7A" />
+      <stop offset="100%" stop-color="#245452" />
+    </linearGradient>
+    <filter id="bLogoGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#D68A3C" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#gridBanner)" />
+  <circle cx="250" cy="315" r="350" fill="url(#bannerCopperGlow)" />
+  <circle cx="950" cy="315" r="350" fill="url(#bannerTealGlow)" />
+
+  <!-- EMBLEM SYMBOL (Left Column) -->
+  <g transform="translate(180, 315) scale(2.8)" filter="url(#bLogoGlow)">
+    <g transform="translate(-70, -70)">
+      <path d="M 70,6 C 48,22 18,42 8,78 C -2,114 18,130 34,134 L 106,134 C 122,130 142,114 132,78 C 122,42 92,22 70,6 Z" fill="none" stroke="url(#bTealGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 70,16 C 52,30 26,48 16,81 C 8,108 24,125 36,127" fill="none" stroke="url(#bCopperGrad)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 70,16 C 88,30 114,48 124,81 C 132,108 116,125 104,127" fill="none" stroke="url(#bCopperGrad)" stroke-width="3" stroke-linecap="round"/>
+
+      <circle cx="70" cy="40" r="7" fill="url(#bCopperGrad)"/>
+      <line x1="70" y1="27" x2="70" y2="23" stroke="url(#bCopperGrad)" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="60" y1="31" x2="56" y2="28" stroke="url(#bCopperGrad)" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="80" y1="31" x2="84" y2="28" stroke="url(#bCopperGrad)" stroke-width="2.2" stroke-linecap="round"/>
+
+      <path d="M 27,126 C 29,98 44,62 62,47 C 65,44 67,47 64,54 C 52,78 41,102 37,126" fill="url(#bTealGrad)"/>
+      <path d="M 39,126 C 44,98 57,74 70,57 C 72,54 75,56 73,62 C 62,83 50,106 47,126" fill="url(#bCopperGrad)"/>
+
+      <path d="M 34,95 Q 55,87 73,74 Q 81,62 89,54 C 87,67 72,85 49,97 Z" fill="url(#bTealGrad)"/>
+      <path d="M 39,93 Q 58,84 77,70" fill="none" stroke="#F6F4F0" stroke-width="1.3" stroke-linecap="round" opacity="0.85"/>
+
+      <rect x="67" y="80" width="14" height="46" fill="url(#bTealGrad)" rx="1.5"/>
+      <rect x="70" y="84" width="3.5" height="4.5" fill="#0D1117" opacity="0.75"/>
+      <rect x="75" y="84" width="3.5" height="4.5" fill="#0D1117" opacity="0.75"/>
+
+      <rect x="83" y="70" width="13" height="56" fill="#3E7C7A" rx="1.5" opacity="0.9"/>
+      <path d="M 98,126 C 96,98 98,74 106,64 C 114,74 116,98 114,126 Z" fill="url(#bCopperGrad)"/>
+      <line x1="18" y1="128" x2="122" y2="128" stroke="url(#bCopperGrad)" stroke-width="2.8" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- TYPOGRAPHY & DETAILS (Right Column) -->
+  <text x="440" y="270" font-family="'Space Grotesk', system-ui, sans-serif" font-weight="800" font-size="58" letter-spacing="-1">
+    <tspan fill="#F6F4F0">ASSETCARE </tspan><tspan fill="#D68A3C">LONDON</tspan>
+  </text>
+
+  <text x="440" y="325" font-family="'Space Grotesk', monospace" font-weight="700" font-size="22" letter-spacing="6" fill="#3E7C7A">
+    HEATING • COOLING • SOLAR • PLUMBING
+  </text>
+
+  <line x1="440" y1="365" x2="1100" y2="365" stroke="#1E2730" stroke-width="2" />
+
+  <text x="440" y="420" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="20" fill="#F6F4F0">
+    Certified UK Heating, Plumbing, Air Conditioning &amp; Solar Engineers
+  </text>
+  
+  <text x="440" y="460" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="16" fill="#8B949E">
+    Companies House Reg: 17167498 • Gas Safe &amp; MCS Accredited • 0% UK VAT Energy Saving
+  </text>
+
+  <text x="440" y="500" font-family="'Space Grotesk', monospace" font-weight="700" font-size="16" fill="#D68A3C">
+    www.assetcarelondon.co.uk • 01268 904 123
+  </text>
+</svg>
